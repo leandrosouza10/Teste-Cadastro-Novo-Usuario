@@ -1,6 +1,7 @@
 package pages;
 
 
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
@@ -17,6 +18,15 @@ public class CadastroPage extends Utils {
     private By aniversarioDia = By.id("days");
     private By aniversarioMes = By.id("months");
     private By aniversarioAno = By.id("years");
+    private By endereco1 = By.id("address1");
+    private By cidade1 = By.id("city");
+    private By estado2 = By.id("id_state");
+    private By novoCep = By.id("postcode");
+    private By informacoesAdd = By.id("other");
+    private By telCelular = By.id("phone_mobile");
+    private By endAlternativo = By.id("alias");
+    private By botaoRegistrar = By.id("submitAccount");
+
 
     public CadastroPage(WebDriver driver) {
         this.driver = driver;
@@ -52,4 +62,37 @@ public class CadastroPage extends Utils {
         Select selectAno = new Select(driver.findElement(aniversarioAno));
         selectAno.selectByValue(ano);
     }
+    public void endereco(String novoEndereco){
+        driver.findElement(endereco1).sendKeys(novoEndereco);
+    }
+    public void cidade(String novaCidade){
+        driver.findElement(cidade1).sendKeys(novaCidade);
+    }
+    public void estado(String estadoNovo){
+        Select selectEstado =new Select(driver.findElement(estado2));
+        selectEstado.selectByVisibleText(estadoNovo);
+    }
+    public void cep(String cepNovo){
+        driver.findElement(novoCep).sendKeys(cepNovo);
+    }
+
+    public void  informacao (String infomacoesAdicionais){
+        driver.findElement(informacoesAdd).sendKeys(infomacoesAdicionais);
+    }
+    public void celular (String numCelular){
+        driver.findElement(telCelular).sendKeys(numCelular);
+    }
+    public void enderecoAlternativo(String endereco){
+        driver.findElement(endAlternativo).sendKeys(endereco);
+    }
+    public void botao(){
+        driver.findElement(botaoRegistrar).click();
+    }
+    public void validaCadastro(String nome, String sobreNome){
+        waitPresent(By.className("lnk_wishlist"),15);
+        String resAtual = driver.findElement(By.className("account")).getText();
+        Assert.assertEquals(nome+sobreNome,resAtual);
+
+    }
+
 }

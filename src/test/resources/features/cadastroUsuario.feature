@@ -8,4 +8,5 @@
       Dado que estou na tela de login
       E acesso o cadastro de usuario
       Quando preencho o formulário de cadastro
-      Entao vejo a mensagem de cadastro realizado com sucesso
+      E clico em registrar
+      Entao vejo cadastro realizado com sucesso
